@@ -1,0 +1,54 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        globally_quoted_identifiers_skip_column_definitions: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  data:
+    redis:
+      repositories:
+        type: none
+        enabled: false
+  jwt:
+    secret: joeunins
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  output:
+    ansi:
+      enabled: ALWAYS
+
+
+
+
+
+#벡엔드서버 버젼
+backend:
+  version: 1.1.0
+
+  #api 요청 토큰 header
+server:
+  header:
+    key: Authorization
+  #서버포트
+  port: 9000
+  servlet:
+    context-path: /api
+  tomcat:
+    max-connections: 10000
+    max-threads: 550
+
+client:
+  header:
+    key: agent-token
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+file:
+  upload:
+    directory: /root/files
+  uri:
+    path: files
+  #jpa 설정
+spring:
+  datasource:
+    driver-class-name: cubrid.jdbc.driver.CUBRIDDriver
+    username: ${CUBRID_ENV_USER}
+    password: ${CUBRID_ENV_PASSWORD}
+    url: jdbc:cubrid:${CUBRID_ENV_IP}:${CUBRID_ENV_PORT}:${CUBRID_ENV_DB}:::?charset=UTF-8
+    hikari:
+      connection-test-query: select 1
+  jpa:
+    database-platform: org.hibernate.dialect.CUBRIDDialect
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      dll-auto: none
+      format_sql: true
+      use_sql_comments: true
+
+  profiles:
+    active: prod
+
+  #redis 설정
+  redis:
+    lettuce:
+      pool:
+        max-active: 100
+        max-idle: 100
+        min-idle: 100
+    host: web_redis
+    port: 6379
+
+    #rabbitmq:
+    #host: 192.168.100.61
+    #username: guest
+    #password: guest
+    #port: 5672
+
+  #토큰만료시간
+ext:
+  token: 10
+  refresh: 60
+
+endpoint: /ws-stomp
+destination:
+  prefix: /pub
+stomp:
+  broker:
+    relay: /sub
+
+#로그 레벨
+logging:
+  level:
+    root: ERROR
+    com.gen.bluexray.*: INFO
+  file: /log/catalina/server.log
+  file.max-history: 10
+  file.max-size: 1000GB
+
