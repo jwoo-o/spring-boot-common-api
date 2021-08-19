@@ -1,7 +1,6 @@
 package com.gen.api.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gen.api.global.interceptor.LicenseInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +23,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Value("${file.uri.path}")
     private String resourcesUriPath;
 
-    private final LicenseInterceptor licenseInterceptor;
-
     private final ObjectMapper objectMapper;
 
     @Override
@@ -34,14 +31,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:///" + resourcesLocation + "/");
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-
-        registry.addInterceptor(licenseInterceptor)
-                .excludePathPatterns("/license")
-                .addPathPatterns("/*");
-
-    }
 
   /**  @Bean
     public MappingJackson2HttpMessageConverter jsonEscapeConverter() {

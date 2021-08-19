@@ -1,13 +1,11 @@
 package com.gen.api.global.aop;
 
 import com.gen.api.global.common.dto.SearchRequestDto;
-import com.gen.bluexray.server.organization.repository.OrganizationRepositorySupport;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,10 +22,9 @@ import java.util.List;
 @Aspect
 public class BeforeOrgCodesAspect {
 
-    @Autowired
-    private OrganizationRepositorySupport organizationRepositorySupport;
 
-    @Pointcut("execution(* com.gen.bluexray.server.*.service.*.*ByOrgCodes(..))")
+
+    @Pointcut("execution(* com.gen.api.server.*.service.*.*ByOrgCodes(..))")
     public void onRequest() {
     }
 
@@ -35,10 +32,6 @@ public class BeforeOrgCodesAspect {
     public Object doSearch(ProceedingJoinPoint pjp) throws Throwable {
 
         SearchRequestDto dto = (SearchRequestDto) pjp.getArgs()[0];
-        if (dto.getOrder() > 1) {
-            List<String> orgCodes = organizationRepositorySupport.findOrgCodeAllByOrgCode(dto.getOrgCode(), dto.getOrder());
-            dto.setCodes(orgCodes);
-        }
 
         return pjp.proceed(pjp.getArgs());
     }

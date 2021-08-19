@@ -2,7 +2,6 @@ package com.gen.api.global.domain.entity;
 
 import com.gen.api.global.Enum.BoardEnum;
 import com.gen.api.global.domain.common.BaseEntity;
-import com.gen.bluexray.server.board.dto.NoticeInfoRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -111,9 +110,5 @@ public class Board extends BaseEntity {
     }
 
 
-    public void update(NoticeInfoRequestDto dto) {
-        this.subject = dto.getSubject();
-        this.content = dto.getContent();
-    }
 
 }

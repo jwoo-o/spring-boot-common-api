@@ -1,7 +1,5 @@
 package com.gen.api.global.config.handler;
 
-import com.gen.bluexray.client.websocket.service.WebSocketChatService;
-import com.gen.bluexray.client.websocket.service.WebSocketConnectService;
 import com.gen.api.global.exception.AlreadyAccessException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -26,9 +24,7 @@ import java.util.Optional;
 public class StompHandler implements ChannelInterceptor {
 
 
-    private final WebSocketConnectService webSocketConnectService;
 
-    private final WebSocketChatService webSocketChatService;
 
     @SneakyThrows
     @Override
@@ -67,9 +63,6 @@ public class StompHandler implements ChannelInterceptor {
                 //log.info("SUBSCRIBE {}, {}", sessionId, pcId);
                  */
 
-                webSocketConnectService.sendSubscribe(pcId.replace("/sub/", ""));
-
-
             } else if (StompCommand.UNSUBSCRIBE == accessor.getCommand()) {
 
                 String sessionId = (String) message.getHeaders().get("simpSessionId");
@@ -77,14 +70,7 @@ public class StompHandler implements ChannelInterceptor {
 
             } else if (StompCommand.DISCONNECT == accessor.getCommand()) { // Websocket 연결 종료
                 String sessionId = (String) message.getHeaders().get("simpSessionId");
-                String pcId = webSocketConnectService.updDisConnect(sessionId);
-                if (pcId != null) {
-                    log.info("DISCONNECT {}, {}", sessionId, pcId);
-                }else {
-                    log.info("DISCONNECT {}", sessionId);
 
-                    webSocketChatService.chatExit(sessionId);
-                }
             }
         } catch (AlreadyAccessException e) {
             e.printStackTrace();

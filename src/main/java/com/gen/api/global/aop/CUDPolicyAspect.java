@@ -2,8 +2,6 @@ package com.gen.api.global.aop;
 
 
 import com.gen.api.global.config.JwtTokenConfig;
-import com.gen.bluexray.server.logs.dto.AdminHistoryRequestDto;
-import com.gen.bluexray.server.logs.service.LogsService;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -29,14 +27,12 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 public class CUDPolicyAspect {
 
-    @Autowired
-    private LogsService logsService;
 
     @Autowired
     private JwtTokenConfig jwtTokenConfig;
 
 
-    @Pointcut("execution(* com.gen.bluexray.server.*.service.*.ins*(..)) || execution(* com.gen.bluexray.server.*.service.*.upd*(..)) || execution(* com.gen.bluexray.server.*.service.*.del*(..))")
+    @Pointcut("execution(* com.gen.api.server.*.service.*.ins*(..)) || execution(* com.gen.api.server.*.service.*.upd*(..)) || execution(* com.gen.api.server.*.service.*.del*(..))")
     public void onLogging() {
     }
 
@@ -65,8 +61,6 @@ public class CUDPolicyAspect {
                     message = "삭제";
                     table = signatureString.replace("del", "tb_");
                 }
-                AdminHistoryRequestDto dto = new AdminHistoryRequestDto(adminId, message, table.toLowerCase(), data);
-                logsService.insAdminHistory(dto);
 
                 } catch (Exception e) {
 

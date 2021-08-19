@@ -35,7 +35,7 @@ public class RequestLoggingAspect {
     }
 
 
-    @Pointcut("execution(* com.gen.bluexray.server.*.web.*.*(..))")
+    @Pointcut("execution(* com.gen.api.server.*.web.*.*(..))")
     public void onRequest() {
     }
 

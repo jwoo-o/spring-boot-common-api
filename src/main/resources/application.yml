@@ -12,7 +12,7 @@ spring:
         type: none
         enabled: false
   jwt:
-    secret: joeunins
+    secret: jwoooooo
   servlet:
     multipart:
       max-file-size: 200MB

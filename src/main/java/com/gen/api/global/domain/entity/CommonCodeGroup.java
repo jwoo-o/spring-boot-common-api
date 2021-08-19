@@ -2,7 +2,6 @@ package com.gen.api.global.domain.entity;
 
 import com.gen.api.global.domain.common.BaseTimeEntity;
 import com.gen.api.global.domain.common.BooleanToYNConverter;
-import com.gen.bluexray.server.cmmn.dto.CommonCodeRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,12 +52,7 @@ public class CommonCodeGroup extends BaseTimeEntity implements Persistable<Strin
         this.useYn = useYn;
     }
 
-    public void update(CommonCodeRequestDto dto) {
 
-        this.groupName = dto.getGroupName();
-        this.groupDesc = dto.getGroupDesc();
-        this.useYn = dto.getUseYn();
-    }
 
     @Override
     public String getId() {

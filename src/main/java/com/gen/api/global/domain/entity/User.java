@@ -3,8 +3,6 @@ package com.gen.api.global.domain.entity;
 
 import com.gen.api.global.domain.common.BaseTimeEntity;
 import com.gen.api.global.domain.common.BooleanToYNConverter;
-import com.gen.bluexray.client.cmmn.dto.AutoUserRequestDto;
-import com.gen.bluexray.server.user.dto.UserRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -94,9 +92,6 @@ public class User extends BaseTimeEntity implements Persistable<String> {
     private List<Board> boards = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<RequestApproval> requestApprovals = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
     private List<UserHistory> userHistories = new ArrayList<>();
 
 
@@ -112,26 +107,6 @@ public class User extends BaseTimeEntity implements Persistable<String> {
         this.tel = tel;
         this.salt = salt;
         this.useYn = true;
-    }
-    public void update(AutoUserRequestDto dto) {
-
-        this.name = dto.getName();
-        this.orgCode = dto.getOrgCode();
-        this.rankCd = dto.getRankCd();
-        this.rankNm = dto.getRankNm();
-        this.email = dto.getEmail();
-        this.tel = dto.getTel();
-        this.useYn = true;
-    }
-
-    public void update(UserRequestDto dto) {
-
-        this.name = dto.getName();
-        this.orgCode = dto.getOrgCode();
-        this.rankCd = dto.getRankCd();
-        this.rankNm = dto.getRankNm();
-        this.email = dto.getEmail();
-        this.tel = dto.getTel();
     }
 
     public void delete() {

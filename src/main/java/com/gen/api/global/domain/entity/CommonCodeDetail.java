@@ -2,7 +2,6 @@ package com.gen.api.global.domain.entity;
 
 import com.gen.api.global.domain.common.BaseTimeEntity;
 import com.gen.api.global.domain.entity.id.CommonCodeDetailId;
-import com.gen.bluexray.server.cmmn.dto.CommonDetailCodeRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,13 +46,6 @@ public class CommonCodeDetail extends BaseTimeEntity implements Persistable<Comm
         this.order = order;
     }
 
-
-    public void update(CommonDetailCodeRequestDto requestDto) {
-
-        this.detailName = requestDto.getDetailName();
-        this.detailDesc = requestDto.getDetailDesc();
-        this.order = requestDto.getOrder();
-    }
 
     @Override
     public CommonCodeDetailId getId() {

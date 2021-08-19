@@ -97,9 +97,6 @@ public class Admin extends BaseTimeEntity implements Persistable<String> {
     private List<Board> boards = new ArrayList<>();
 
     @OneToMany(mappedBy = "admin")
-    private List<RequestApproval> requestApprovals = new ArrayList<>();
-
-    @OneToMany(mappedBy = "admin")
     private List<AdminHistory> adminHistories = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

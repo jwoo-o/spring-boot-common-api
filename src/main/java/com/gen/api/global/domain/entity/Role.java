@@ -2,7 +2,6 @@ package com.gen.api.global.domain.entity;
 
 import com.gen.api.global.domain.common.BaseEntity;
 import com.gen.api.global.util.JsonUtil;
-import com.gen.bluexray.server.role.dto.RolesRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,12 +48,5 @@ public class Role extends BaseEntity {
         this.roleName = roleName;
         this.roleDesc = roleDesc;
         this.level = level;
-    }
-
-    public void update(RolesRequestDto dto) throws Exception {
-        this.permission = JsonUtil.dtoToString(dto.getPermission());
-        this.roleDesc = dto.getRoleDesc();
-        this.roleName = dto.getRoleName();
-        this.level = dto.getLevel();
     }
 }

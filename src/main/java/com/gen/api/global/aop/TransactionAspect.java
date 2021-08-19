@@ -34,7 +34,7 @@ public class TransactionAspect {
     private final PlatformTransactionManager transactionManager;
 
     private static final int TX_METHOD_TIMEOUT = 300;
-    private static final String EXPRESSION = "execution(* com.gen.bluexray.*.*.service.*.*(..))";
+    private static final String EXPRESSION = "execution(* com.gen.api.*.*.service.*.*(..))";
 
 
     @Bean

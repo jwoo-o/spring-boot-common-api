@@ -108,12 +108,6 @@ public class Agent extends BaseTimeEntity implements Persistable<String> {
     @Convert(converter = BooleanToYNConverter.class)
     private boolean loginYn;
 
-    @OneToMany(mappedBy = "agent")
-    private List<RequestApproval> requestApprovals = new ArrayList<>();
-
-    @OneToMany(mappedBy = "agent")
-    private List<AgentSystemInfo> agentPrograms = new ArrayList<>();
-
     @Override
     public String getId() {
         return pcId;
